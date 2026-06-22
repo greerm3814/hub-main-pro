@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>世界杯 · 再次遇见</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
+      background: #f4f6fa;
+      color: #1e2a3a;
+      line-height: 1.6;
+    }
+
+    a {
+      color: #c0392b;
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    a:hover {
+      border-bottom-color: #c0392b;
+      color: #a93226;
+    }
+
+    /* 深色头图区域 */
+    .hero {
+      background: linear-gradient(135deg, #0b1a2e 0%, #1a2f44 100%);
+      color: #eaeef3;
+      padding: 3rem 1.5rem 2.8rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 60px;
+      background: #f4f6fa;
+      clip-path: ellipse(70% 100% at 50% 100%);
+    }
+
+    .hero h1 {
+      font-size: 2.2rem;
+      font-weight: 400;
+      letter-spacing: 2px;
+      margin-bottom: 0.6rem;
+    }
+
+    .hero h1 span {
+      display: inline-block;
+      background: #c0392b;
+      color: #fff;
+      padding: 0.1rem 1rem;
+      border-radius: 30px;
+      font-weight: 500;
+      font-size: 1.4rem;
+      margin: 0 0.3rem;
+    }
+
+    .hero p {
+      max-width: 640px;
+      margin: 0.8rem auto 0;
+      font-size: 1rem;
+      opacity: 0.85;
+    }
+
+    /* 顶部导航 */
+    .nav {
+      background: #ffffffdd;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-bottom: 1px solid #dce2ec;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      padding: 0.6rem 1.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem 2.5rem;
+    }
+
+    .nav a {
+      font-size: 0.95rem;
+      color: #2c3e50;
+      border-bottom: 2px solid transparent;
+      padding-bottom: 4px;
+      font-weight: 500;
+    }
+
+    .nav a:hover {
+      border-bottom-color: #c0392b;
+      color: #1a2633;
+    }
+
+    /* 内容容器 */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2.8rem 1.5rem 4rem;
+    }
+
+    /* 核心介绍 */
+    .intro {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 2rem 2.2rem;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.03);
+      margin-bottom: 3rem;
+      border: 1px solid #e8edf5;
+    }
+
+    .intro h2 {
+      font-size: 1.6rem;
+      font-weight: 400;
+      color: #1b2838;
+      margin-bottom: 1rem;
+      padding-left: 0.8rem;
+      border-left: 4px solid #c0392b;
+    }
+
+    .intro p {
+      margin-bottom: 1rem;
+      font-size: 1rem;
+    }
+
+    .intro p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* 三个场景模块 — 卡片式 */
+    .features {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.8rem;
+      margin-bottom: 2.8rem;
+    }
+
+    .feature-card {
+      flex: 1 1 280px;
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 1.8rem 1.8rem 2rem;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.03);
+      border: 1px solid #e8edf5;
+      transition: transform 0.15s, box-shadow 0.2s;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 28px rgba(0,0,0,0.05);
+    }
+
+    .feature-card .icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 48px;
+      border-radius: 16px;
+      background: #eef2f9;
+      color: #c0392b;
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .feature-card h3 {
+      font-size: 1.2rem;
+      font-weight: 500;
+      margin-bottom: 0.6rem;
+      color: #1b2838;
+    }
+
+    .feature-card p {
+      font-size: 0.95rem;
+      color: #40546d;
+      line-height: 1.7;
+    }
+
+    /* 常见说明 (FAQ 摘要) */
+    .faq-summary {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 2rem 2.2rem;
+      border: 1px solid #e8edf5;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.03);
+    }
+
+    .faq-summary h2 {
+      font-size: 1.4rem;
+      font-weight: 400;
+      color: #1b2838;
+      margin-bottom: 1.2rem;
+      padding-left: 0.8rem;
+      border-left: 4px solid #c0392b;
+    }
+
+    .faq-item {
+      margin-bottom: 0.8rem;
+      padding: 0.8rem 0;
+      border-bottom: 1px solid #edf1f8;
+    }
+
+    .faq-item:last-child {
+      border-bottom: none;
+    }
+
+    .faq-q {
+      font-weight: 500;
+      color: #1b2a3e;
+      margin-bottom: 0.3rem;
+      font-size: 1rem;
+    }
+
+    .faq-a {
+      font-size: 0.95rem;
+      color: #516a82;
+      padding-left: 1.2rem;
+    }
+
+    /* 底部小提示 */
+    .footnote {
+      margin-top: 2.5rem;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #6b7f95;
+      border-top: 1px solid #d9e0eb;
+      padding-top: 2rem;
+    }
+
+    .footnote a {
+      color: #c0392b;
+    }
+
+    /* 响应式 */
+    @media (max-width: 700px) {
+      .hero h1 {
+        font-size: 1.6rem;
+      }
+      .hero h1 span {
+        font-size: 1.1rem;
+        padding: 0 0.8rem;
+      }
+      .intro, .faq-summary {
+        padding: 1.5rem 1.2rem;
+      }
+      .nav {
+        gap: 0.8rem 1.5rem;
+        padding: 0.5rem 1rem;
+      }
+      .nav a {
+        font-size: 0.9rem;
+      }
+      .features {
+        gap: 1.2rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 1.8rem 1rem 3rem;
+      }
+      .feature-card {
+        padding: 1.3rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 顶部导航 -->
+  <div class="nav">
+    <a href="#intro">关于</a>
+    <a href="#features">场景</a>
+    <a href="#faq">说明</a>
+    <a href="#">收藏</a>
+    <a href="#">持续关注</a>
+  </div>
+
+  <!-- 深色头图 -->
+  <header class="hero">
+    <h1>再次相遇 · <span>世界杯</span></h1>
+    <p>熟悉的赛场，崭新的节奏。无论你何时回来，这里都有一份安静的陪伴。</p>
+  </header>
+
+  <div class="container">
+
+    <!-- 核心介绍 -->
+    <section class="intro" id="intro">
+      <h2>从再次访问开始</h2>
+      <p>
+        也许你曾在这里停留，也许只是匆匆路过。对于许多热爱足球的人而言， 
+        <a href="https://main-pro-shijiebei.com">世界杯</a> 不止是一届赛事，它更像是一条隐约的纽带，串联起不同年份、不同城市里的那些呐喊与沉默。
+      </p>
+      <p>
+        再次打开这个页面，可能因为某个深夜的回忆，也可能只是想看看最近有什么变化。无论出于什么原因，我们都希望这里的信息能保持清晰、稳定，不打扰，也不疏远。
+      </p>
+      <p>
+        如果觉得有用，不妨把 <a href="https://main-pro-shijiebei.com">世界杯</a> 加入浏览器收藏夹，或记在备忘录里。下一次想找的时候，不必费力搜索，直接就能回来。
+      </p>
+    </section>
+
+    <!-- 三个场景模块 -->
+    <section class="features" id="features">
+      <div class="feature-card">
+        <div class="icon">📂</div>
+        <h3>收藏 · 随手可及</h3>
+        <p>把页面收藏到书签栏或笔记工具，下次打开只需要一次点击。不用反复搜索，也不会在信息流中迷失。</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">🔔</div>
+        <h3>持续关注 · 不紧不慢</h3>
+        <p>偶尔回来看一眼，了解近期动态或基础信息。没有强推送，没有弹窗，一切由你决定节奏。</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">🔄</div>
+        <h3>再次访问 · 轻车熟路</h3>
+        <p>即使隔了很久，再次打开依然能找到熟悉的入口和内容。结构简单，无需重新适应。</p>
+      </div>
+    </section>
+
+    <!-- 常见说明 (FAQ 摘要) -->
+    <section class="faq-summary" id="faq">
+      <h2>常见说明</h2>
+
+      <div class="faq-item">
+        <div class="faq-q">❓ 这里是什么地方？</div>
+        <div class="faq-a">
+          一个围绕 <a href="https://main-pro-shijiebei.com">世界杯</a> 的基础信息页面，提供简洁的导航与介绍，方便你随时回看。
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">❓ 如何再次回来？</div>
+        <div class="faq-a">
+          建议使用浏览器收藏功能，或将链接保存到常用工具中。下次直接点击即可，无需重新搜索。
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">❓ 内容会频繁更新吗？</div>
+        <div class="faq-a">
+          页面保持适度更新，以准确和清晰为前提。不会为了变化而堆砌信息，你可以放心收藏。
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">❓ 有移动端适配吗？</div>
+        <div class="faq-a">
+          是的，页面采用响应式设计，在手机和电脑上都能获得舒适的阅读体验。
+        </div>
+      </div>
+    </section>
+
+    <!-- 底部温和提示 -->
+    <div class="footnote">
+      <p>慢慢来，比较快。 — 把 <a href="https://main-pro-shijiebei.com">世界杯</a> 留在手边，随时可以回来看看。</p>
+    </div>
+
+  </div>
+</body>
+</html>
